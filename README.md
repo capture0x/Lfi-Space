@@ -1,6 +1,6 @@
    # 🪐  &nbsp;  LFI-SPACE TOOL  &nbsp;  🪐
 
-<img src="https://i.imgur.com/KuLbSJP.png" width="60%"></img>
+<img src="https://i.imgur.com/KuLbSJP.png" width="80%"></img>
 
 
 
