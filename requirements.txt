@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.2
+bs4==0.0.1
+certifi==2022.12.7
+charset-normalizer==3.1.0
+colorama==0.4.6
+docopt==0.6.2
+idna==3.4
+pipreqs==0.4.13
+requests==2.30.0
+soupsieve==2.4.1
+urllib3==2.0.2
+yarg==0.1.9
