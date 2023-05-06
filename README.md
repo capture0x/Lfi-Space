@@ -17,6 +17,7 @@ Instagram: [TMRSWRR](https://www.instagram.com/tmrswrr/)
 
 ## 👇 💫  How to use  💫 👇
 
+[![How to use](https://i.imgur.com/ybDgF57.png)](https://youtu.be/rpcGqwZU2As)
 
 ## 📒 Read Me 📒
 
