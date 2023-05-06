@@ -69,6 +69,8 @@ python3 lfi.py
 
 ## Bugs and enhancements
 
+*Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.*
+
 For bug reports or enhancements, please open an [issue](https://github.com/capture0x/Lfi-Space/issues) here.
 
 
