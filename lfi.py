@@ -20,7 +20,11 @@ class LFIScanner:
         for dork in dorks:
             dork = dork.strip()
             url = f"{search_engine}?q={dork}&num={num_results}"
-            response = requests.get(url)
+            try:
+                response = requests.get(url, timeout=5)
+            except requests.exceptions.RequestException as e:
+                print(Fore.RED + Style.BRIGHT + "[!] Request exception: %s" % e)
+                continue
             soup = BeautifulSoup(response.text, "html.parser")
             results = soup.find_all("a")
             urls = []
@@ -45,10 +49,9 @@ class LFIScanner:
                         else:
                             print(
                                 Fore.BLUE + Style.BRIGHT + "[-]" + Fore.GREEN + Style.BRIGHT + f"{target_url}" + Fore.YELLOW + " is not vulnerable to LFI")
-                    except urllib.error.URLError:
-                        print(
-                            Fore.YELLOW + f"[!] Connection error while accessing {target_url}. Retrying in 5 seconds..." + Style.RESET_ALL)
-                        time.sleep(5)
+                    except requests.exceptions.RequestException as e:
+                        print(Fore.RED + Style.BRIGHT + "[!] Request exception: %s" % e)
+                        continue
 
     def check_lfi(self, url):
         for payload in self.lfi_payloads:
@@ -95,7 +98,6 @@ class LFIScanner:
 
 
 if __name__ == "__main__":
-    entery.entryy(
+    entery.entryy()
     scanner = LFIScanner()
     scanner.run()
-
