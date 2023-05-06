@@ -20,7 +20,7 @@ Instagram: [TMRSWRR](https://www.instagram.com/tmrswrr/)
 [![How to use](https://i.imgur.com/ybDgF57.png)](https://youtu.be/rpcGqwZU2As)
 
 ## 📒 Read Me 📒
-
+```
 LFI Space is a robust and efficient tool designed to detect Local File Inclusion (LFI) vulnerabilities in web applications. This tool simplifies the process of identifying potential security flaws by leveraging two distinct scanning methods: Google Dork Search and Targeted URL Scan. With its comprehensive approach, LFI Space assists security professionals, penetration testers, and ethical hackers in assessing the security posture of web applications.
 
 The Google Dork Search functionality within LFI Space harnesses the power of the Google search engine to identify web pages that may be susceptible to LFI attacks. By employing carefully crafted Google dorks, the tool retrieves search results that are likely to contain vulnerable pages. These dorks are specific queries designed to target common LFI vulnerability patterns in web applications. LFI Space then analyzes the responses from these pages, meticulously examining the content to identify any signs of LFI vulnerabilities. This approach allows for a broad and automated search, rapidly surfacing potential targets for further investigation.
@@ -30,7 +30,7 @@ Additionally, LFI Space provides a Targeted URL Scan feature, enabling users to 
 It is important to note that LFI Space is intended for responsible and authorized use, such as security testing, vulnerability assessments, or penetration testing, with proper consent and legal permissions. It is crucial to adhere to ethical guidelines and respect the privacy and security of targeted systems.
 
 In conclusion, LFI Space is a powerful tool that combines Google Dork Search and Targeted URL Scan functionalities to detect Local File Inclusion vulnerabilities in web applications. By automating the search for potentially vulnerable pages and providing the ability to scan specific URLs, LFI Space empowers security professionals to identify LFI vulnerabilities effectively. With its user-friendly interface and comprehensive scanning capabilities, LFI Space is an invaluable asset for enhancing the security posture of web applications.
-
+```
 * Google Dork Search: The tool queries Google search engine to find web pages that may be vulnerable to LFI attacks based on certain Google dorks. It then analyzes the responses of these pages to determine if any LFI vulnerabilities exist.
 
 * Targeted URL Scan: The tool accepts a list of URLs as input and scans each URL for LFI vulnerabilities.
