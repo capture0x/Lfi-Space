@@ -35,7 +35,7 @@ In conclusion, LFI Space is a powerful tool that combines Google Dork Search and
 
 * Targeted URL Scan: The tool accepts a list of URLs as input and scans each URL for LFI vulnerabilities.
 
-# LFI Find Dork
+## 🍏 LFI Find Dork 🍏
 
 ```
 inurl:/filedown.php?file=
@@ -52,7 +52,7 @@ index.php?body=
 /classes/adodbt/sql.php?classes_dir=
 enc/content.php?Home_Path=
 ```
-*This dork list in lfi2.txt file
+* This dork list in lfi2.txt file
 
 ##  :cd: Installation  :cd:
 ### Installation with requirements.txt
@@ -63,7 +63,7 @@ cd Lfi-Space
 pip3 install -r requirements.txt
 ```
 
-## Usage
+## ⭐ Usage ⭐
 
 ```bash
 python3 lfi.py
