@@ -1,10 +1,6 @@
+
 inurl:/filedown.php?file=
-inurl:/news.php?include=
-inurl:/view/lang/index.php?page=?page=
-inurl:/shared/help.php?page=
-inurl:/include/footer.inc.php?_AMLconfig[cfg_serverpath]=
 inurl:/squirrelcart/cart_content.php?cart_isp_root=
 inurl:index2.php?to=
 inurl:index.php?load=
 inurl:home.php?pagina=
-
