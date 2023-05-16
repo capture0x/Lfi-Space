@@ -79,16 +79,20 @@ class LFIScanner:
                 self.google_lfi(take_number)
                 print(Fore.GREEN + Style.BRIGHT + "Search finished.")
             elif a == "2":
-                url_list_path = input(Fore.CYAN + Style.BRIGHT + "Enter the URL list file path: ")
-                with open(url_list_path, 'r') as f:
-                    urls = f.readlines()
-                for url in urls:
-                    url = url.strip()
-                    if self.check_lfi(url):
-                        print(Fore.GREEN + Style.BRIGHT + "LFI vulnerability found at %s" % url)
-                    else:
-                        print(Fore.BLUE + Style.BRIGHT + "LFI is not found at %s" % url)
-                        print(Fore.GREEN + Style.BRIGHT + "Search finished.")
+                try:
+                    url_list_path = input("<You can be add in url.txt>>\n" +Fore.CYAN + Style.BRIGHT + "Enter the URL list file path: ")
+                    with open(url_list_path, 'r') as f:
+                        urls = f.readlines()
+                    for url in urls:
+                        url = url.strip()
+                        if self.check_lfi(url):
+                            print(Fore.GREEN + Style.BRIGHT + "LFI vulnerability found at %s" % url)
+                        else:
+                            print(Fore.BLUE + Style.BRIGHT + "LFI is not found at %s" % url)
+                            print(Fore.GREEN + Style.BRIGHT + "Search finished.")
+                except:
+                    print(Fore.RED + Style.BRIGHT + "You need to select url LIST file!?")
+                    continue
             elif a == "0":
                 print(Fore.CYAN + Style.BRIGHT + "Quitting...")
                 break
