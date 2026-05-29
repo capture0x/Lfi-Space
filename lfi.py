@@ -1,10 +1,45 @@
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import unquote
+from urllib.parse import unquote, urlparse
 from colorama import Fore, Style
 import time
+import os
+import re
 import entery
 import urllib
+
+def is_valid_url(url):
+    """
+    Validates a URL, ensuring it has the correct structure and format.
+    It also handles edge cases like too many dots or missing schemes.
+    """
+    try:
+        # First, attempt to parse the URL with urllib
+        result = urlparse(url)
+
+        # If there's no scheme, prepend 'http://' by default
+        if not result.scheme:
+            url = 'http://' + url
+            result = urlparse(url)
+
+        # Validate URL using regex (to handle edge cases like 'migrate.supabase.com..')
+        # This is a simple but effective regex for URL structure.
+        regex = re.compile(
+            r'^(?:http|ftp)s?://'  # http:// or https://
+            r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...
+            r'localhost|'  # localhost...
+            r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|'  # ...or ipv4
+            r'\[?[A-F0-9]*:[A-F0-9:]+\]?)'  # ...or ipv6
+            r'(?::\d+)?'  # optional port
+            r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+
+        # Return True if the regex matches and URL has both scheme and netloc
+        return re.match(regex, url) is not None and all([result.scheme, result.netloc])
+
+    except Exception as e:
+        # If parsing or validation fails, log the error for debugging and return False
+        print(Fore.RED + f"[!] URL Validation error: {str(e)}")
+        return False
 
 class LFIScanner:
     def __init__(self):
@@ -80,18 +115,43 @@ class LFIScanner:
                 print(Fore.GREEN + Style.BRIGHT + "Search finished.")
             elif a == "2":
                 try:
-                    url_list_path = input("<You can be add in url.txt>>\n" +Fore.CYAN + Style.BRIGHT + "Enter the URL list file path: ")
+                    url_list_path = input(Fore.MAGENTA + "<You can be add in url.txt>\n" + Fore.CYAN + "Enter the full path to the URL list file: ")
+                    
+                    # Check if the file exists before opening it
+                    if not os.path.isfile(url_list_path):
+                        print(Fore.RED + "Error: The file '%s' was not found. Please check the path and try again." % url_list_path)
+                        continue
+
+                    # Open the file
                     with open(url_list_path, 'r') as f:
                         urls = f.readlines()
+
+                    # Process the URLs and scan for LFI
                     for url in urls:
                         url = url.strip()
-                        if self.check_lfi(url):
-                            print(Fore.GREEN + Style.BRIGHT + "LFI vulnerability found at %s" % url)
-                        else:
-                            print(Fore.BLUE + Style.BRIGHT + "LFI is not found at %s" % url)
-                            print(Fore.GREEN + Style.BRIGHT + "Search finished.")
-                except:
-                    print(Fore.RED + Style.BRIGHT + "You need to select url LIST file!?")
+
+                        # Valideate the URL before proceeding
+                        if not is_valid_url(url):
+                            print(Fore.YELLOW + "Skipping invalid URL: '%s'" % url)
+                            continue # Skip any invalid URL to prevent issues
+
+                        print(Fore.GREEN + "Scanning %s for LFI vulnerability..." % url)
+
+                        try:
+                            if self.check_lfi(url):
+                                print(Fore.GREEN + "LFI vulnerability found at %s" % url)
+                            else:
+                                print(Fore.BLUE + "LFI is not found at %s" % url)
+                        except Exception as scan_error:
+                            print(Fore.RED + f"[!] Error while scanning URL: {url}. Error: {str(scan_error)}")
+                            continue # Continue to the next URL even if an error occurs
+
+                    print(Fore.GREEN + "Scan finished.")
+                    
+                except FileNotFoundError:
+                    print(Fore.RED + "Error: The file '%s' was not found. Please double-check the file path." % url_list_path)
+                except Exception as e:
+                    print(Fore.RED + "An error occurred: %s" % str(e))
                     continue
             elif a == "0":
                 print(Fore.CYAN + Style.BRIGHT + "Quitting...")
